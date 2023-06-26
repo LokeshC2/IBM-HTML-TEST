@@ -1,12 +1,13 @@
 package project2;
+import java.util.UUID;
 
 public class Department {
   private String departmentId;
   private String departmentName;
   private Location deptLocation;
 
-  public Department(String id, String name, Location location) {
-    departmentId = id;
+  public Department(String name, Location location) {
+    departmentId = UUID.randomUUID().toString();
     departmentName = name;
     deptLocation = location;
   }

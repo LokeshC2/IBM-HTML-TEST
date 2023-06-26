@@ -1,4 +1,5 @@
 package project2;
+import java.util.UUID;
 
 public class Employee {
 
@@ -10,7 +11,6 @@ public class Employee {
 
   //method
   public Employee(
-    String id,
     String name,
     Integer salary,
     Department dept
@@ -18,7 +18,7 @@ public class Employee {
     if (salary<1000){
       salary = 1000;
     }
-    employeeId = id;
+    employeeId = UUID.randomUUID().toString();
 
     employeeName = name;
 

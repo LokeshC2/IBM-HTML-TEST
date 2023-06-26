@@ -1,4 +1,5 @@
 package project2;
+import java.util.UUID;
 
 public class Location {
   private String locationId;
@@ -7,12 +8,11 @@ public class Location {
   private String locationZipCode;
 
   public Location(
-    String id,
     String name,
     String city,
     String zipCode
   ) {
-    locationId = id;
+    locationId = UUID.randomUUID().toString();
     locationName = name;
     locationCity = city;
     locationZipCode = zipCode;
