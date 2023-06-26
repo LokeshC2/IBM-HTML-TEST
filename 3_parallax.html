@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Parallax background</title>
+</head>
+
+<body>
+  <div class="banner1">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>Parallax background</h1>
+    </div>
+
+    <div class="banner2">
+      <h1>Parallax #2</h1>
+      <p>
+        We can do some really cool stuff with css. We can even make a parallax
+        background effect. This is done by setting the background-attachment
+        property to fixed. This will make the background image stay fixed as the
+        user scrolls down the page.
+      </p>
+    </div>
+
+    <div class="banner3">
+      <h1>Thanks for visiting!</h1>
+      
+      <footer>
+        <p>Copyleft 2017</p>
+      </footer>
+    </div>
+      
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        text-align: center;
+        color: #fff;
+      }
+
+      div.banner1 {
+        display: flex;
+        background-image: url("https://source.unsplash.com/1600x900/?nature,water");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+
+      div.banner2 {
+        background-image: url("https://source.unsplash.com/1600x900/?nature,tree");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+
+      div.banner3 {
+        display: flex;
+        flex-direction: column;
+        background-image: url("https://source.unsplash.com/1600x900/?nature,sands");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        height: 100vh;        
+      }
+
+      nav ul li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .banner2 h1 {
+        width: 100%;
+        background-color: #333;
+        margin: auto;
+      }
+
+      .banner2 p {
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+      }
+
+      .banner3 h1 {
+        width: 100%;
+        background-color: #333;
+        margin: auto;
+      }
+
+      footer {
+        position: sticky;
+        bottom: 0;
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+      }
+
+      footer p {
+        color: #fff;
+        margin: 0;
+      }
+      
+    </style>
+
+
+
+</body></html>
