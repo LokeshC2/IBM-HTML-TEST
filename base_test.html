@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+  <TITLE>Demo Form</TITLE>
+  <STYLE>
+    body {
+      display: flex;
+      height: 100vh;
+    }
+    form {
+      margin: auto;
+    }
+    label {
+      padding-left: 5px;
+      display: block;
+      font-family: Helvetica;
+    }
+    input {
+      margin: 5px;
+    }
+   </STYLE>
+  </HEAD>
+  <BODY>
+    <FORM onsubmit="alert('Form Submitted')">
+      <LABEL for="name">Name:</LABEL>
+      <INPUT type="text" name="name"></INPUT>
+      <LABEL for="address">Address:</LABEL>
+      <INPUT type="textarea" name="address"></INPUT>
+      <LABEL for="grade">Grade:</LABEL>
+      <INPUT type="radio" name="grade">A</INPUT>
+      <INPUT type="radio" name="grade">B</INPUT>
+      <INPUT type="radio" name="grade">c</INPUT>
+      <LABEL for="Language">Laguage:</LABEL>
+      <INPUT type="checkbox">English</INPUT>
+      <INPUT type="checkbox">Hindi</INPUT>
+      <BR>
+      <BUTTON type="submit">SUBMIT</BUTTON>
+    <FORM>
+  </BODY>
+<HTML>
