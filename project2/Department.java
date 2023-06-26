@@ -1,17 +1,24 @@
 package project2;
 
 public class Department {
-  public String departmentName;
+  private String departmentId;
+  private String departmentName;
+  private Location deptLocation;
 
-  Department() {
-    departmentName = "not-assigned";
-  }
-  
-  Department(String name) {
+  public void createDepartment(String id, String name, Location location) {
+    departmentId = id;
     departmentName = name;
+    deptLocation = location;
   }
 
   public String getDetails() {
-    return "this is demo department....";
+    return (
+      "Department ID: " +
+      departmentId +
+      " Department Name: " +
+      departmentName +
+      " Department Location: " +
+      deptLocation.getDetails()
+    );
   }
 }

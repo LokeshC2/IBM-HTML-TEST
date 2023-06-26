@@ -1,0 +1,22 @@
+Cloud lab access
+daily assessments + homework
+
+We did a few html assessments
+
+JAVA
+
+Programming language, development environment, and  application environment, and deployment environment all in one.
+Its used to develop applets applications for desktop, web, mobile, and embedded devices.
+
+Easy to use, avoids common programming errors, and is object oriented. Allows creating streamlined and clear code.
+
+JAVA is compiled into bytecode which is interpreted by the JVM. This allows the same code to run on any platform.
+
+Java can also be Just In Time (JIT) compiled to native code for faster execution.
+
+JVM DOES THREE THINGS:
+  Loads code
+  Verifies code
+  Executes code
+
+JVM is platform dependent, but Java is platform independent.

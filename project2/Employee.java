@@ -3,18 +3,21 @@ package project2;
 public class Employee {
 
   //attributes
-  String employeeName;
-  String employeeId;
-  String employeeSalary;
-  Department department;
+  private String employeeName;
+  private String employeeId;
+  private Integer employeeSalary;
+  private Department department;
 
   //method
   void createEmployee(
     String id,
     String name,
-    String salary,
+    Integer salary,
     Department dept
   ) {
+    if (salary<1000){
+      salary = 1000;
+    }
     employeeId = id;
 
     employeeName = name;
@@ -33,7 +36,7 @@ public class Employee {
       employeeId +
       " Salary: " +
       employeeSalary +
-      "Department: " +
+      " Department: " +
       department.getDetails()
     );
   }
