@@ -6,7 +6,7 @@ public class Location {
   private String locationCity;
   private String locationZipCode;
 
-  public void createLocation(
+  public Location(
     String id,
     String name,
     String city,

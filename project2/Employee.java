@@ -9,7 +9,7 @@ public class Employee {
   private Department department;
 
   //method
-  void createEmployee(
+  public Employee(
     String id,
     String name,
     Integer salary,
