@@ -9,6 +9,34 @@ public class Employee {
   private Integer employeeSalary;
   private Department department;
 
+  public String getEmployeeName() {
+    return employeeName;
+  }
+
+  public void setEmployeeName(String employeeName) {
+    this.employeeName = employeeName;
+  }
+
+  public String getEmployeeId() {
+    return employeeId;
+  }
+
+  public Integer getEmployeeSalary() {
+    return employeeSalary;
+  }
+
+  public void setEmployeeSalary(Integer employeeSalary) {
+    this.employeeSalary = employeeSalary;
+  }
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
+
   //method
   public Employee(
     String name,
@@ -18,7 +46,7 @@ public class Employee {
     if (salary<1000){
       salary = 1000;
     }
-    employeeId = UUID.randomUUID().toString();
+    employeeId = UUID.randomUUID().toString().substring(0, 8);
 
     employeeName = name;
 
@@ -27,17 +55,13 @@ public class Employee {
     department = dept;
   }
 
-  //method
-  String getDetails() {
+  @Override
+  public String toString() {
     return (
-      "Name: " +
-      employeeName +
-      " ID: " +
-      employeeId +
-      " Salary: " +
-      employeeSalary +
-      " Department: " +
-      department.getDetails()
+      "Employee ID: " + employeeId + "\n" +
+      "Employee Name: " + employeeName + "\n" +
+      "Employee Salary: " + employeeSalary + "\n" +
+      "Employee Department: \n" + department
     );
   }
 }
