@@ -12,7 +12,8 @@ public class App {
       System.out.println("1. Add employee");
       System.out.println("2. List employees");
       System.out.println("3. Find employee by ID");
-      System.out.println("4. Remove employee by Name");
+      System.out.println("4. Update employee by ID");
+      System.out.println("5. Remove employee by Name");
       System.out.println("0. Exit");
       System.out.println("Enter your choice:");
       choice = input.nextInt();
@@ -30,6 +31,11 @@ public class App {
           Employeefactory.findEmployeeById(id);
           break;
         case 4:
+          System.out.println("Enter employee ID:");
+          id = input.next();
+          Employeefactory.updateEmployeeById(id);
+          break;
+        case 5:
           System.out.println("Enter employee name:");
           String name = input.next();
           Employeefactory.removeAllEmployeesByName(name);

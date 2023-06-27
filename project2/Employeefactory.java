@@ -80,4 +80,50 @@ public class Employeefactory {
     employees.removeAll(removed);
     System.out.println("Removed employees: \n" + removed);
   }
+
+  public static void updateEmployeeById(String id) {
+    Employee employee = null;
+    for (Employee emp : employees) {
+      if (emp.getEmployeeId().equals(id)) {
+        employee = emp;
+        break;
+      }
+    }
+    int choice = 0;
+    do {
+      System.out.println("1. Update employee name");
+      System.out.println("2. Update employee salary");
+      System.out.println("3. Update employee department");
+      System.out.println("4. Update employee location");
+      System.out.println("0. Exit");
+      System.out.println("Enter your choice:");
+      choice = input.nextInt();
+      switch (choice) {
+        case 1:
+          System.out.println("Enter employee name:");
+          String name = input.next();
+          employee.setEmployeeName(name);
+          break;
+        case 2:
+          System.out.println("Enter employee salary:");
+          Integer salary = Integer.parseInt(input.nextLine());
+          employee.setEmployeeSalary(salary);
+          break;
+        case 3:
+          Department department = createDepartment();
+          employee.setDepartment(department);
+          break;
+        case 4:
+          Location location = createLocation();
+          employee.getDepartment().setDeptLocation(location);
+          break;
+        case 0:
+          System.out.println("Goodbye!");
+          break;
+        default:
+          System.out.println("Invalid choice!");
+          break;
+      }
+    } while (choice != 0);
+  }
 }
