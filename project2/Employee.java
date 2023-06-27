@@ -21,6 +21,11 @@ public class Employee {
     return employeeId;
   }
 
+  public void setEmployeeId(String employeeId) {
+    this.employeeId = employeeId;
+  }
+
+
   public Integer getEmployeeSalary() {
     return employeeSalary;
   }
@@ -63,5 +68,8 @@ public class Employee {
       "Employee Salary: " + employeeSalary + "\n" +
       "Employee Department: \n" + department
     );
+  }
+
+  public void getDetails() {
   }
 }
