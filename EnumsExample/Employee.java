@@ -1,4 +1,4 @@
-package Enums;
+package EnumsExample;
 
 
 public class Employee {
