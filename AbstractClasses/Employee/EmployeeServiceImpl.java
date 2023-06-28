@@ -3,7 +3,8 @@ package AbstractClasses.Employee;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class EmployeeServiceImpl extends EmployeeService {
+// public class EmployeeServiceImpl extends EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
   private Vector<Employee> employees = new Vector<Employee>();
   private static int count = 0;

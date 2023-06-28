@@ -1,6 +1,7 @@
 package AbstractClasses.Employee;
 
-public abstract class EmployeeService {
+// public abstract class EmployeeService {
+public interface EmployeeService {
 
   abstract public Employee createEmployee(
     String firstName,
