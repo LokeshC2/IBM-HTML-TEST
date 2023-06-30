@@ -1,4 +1,4 @@
-package Set.Employee;
+package Collection.Employee;
 
 public interface EmployeeService {
 
