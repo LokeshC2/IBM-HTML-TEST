@@ -23,11 +23,10 @@ public class Tester {
   }
 
   public static void testCounter2() {
-    Counter2 counter = new Counter2();
-    Counter2 counter2 = new Counter2();
-    Counter2 counter3 = new Counter2();
-    Counter2 counter4 = new Counter2();
-    Counter2 counter5 = new Counter2();
+    new Counter2();
+    new Counter2();
+    new Counter2();
+    new Counter2();
+    new Counter2();
   }
-
 }

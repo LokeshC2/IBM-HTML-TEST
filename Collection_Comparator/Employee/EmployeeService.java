@@ -1,4 +1,4 @@
-package Collection.Employee;
+package Collection_Comparator.Employee;
 
 public interface EmployeeService {
 

@@ -1,6 +1,6 @@
-package Collection.Employee;
+package Collection_Comparator.Employee;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
 
   private String id;
   private String firstName;
@@ -74,6 +74,11 @@ public class Employee {
   @Override
   public int hashCode() {
     return id.hashCode();
+  }
+
+  @Override
+  public int compareTo(Employee arg0) {
+    return this.id.compareTo(arg0.id);
   }
 
 }

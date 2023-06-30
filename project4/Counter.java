@@ -7,7 +7,7 @@ public class Counter {
     count++;
   }
 
-  public static void decrement() {
+  public void decrement() {
     count--;
   }
 
