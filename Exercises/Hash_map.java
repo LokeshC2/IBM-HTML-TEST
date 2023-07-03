@@ -43,7 +43,5 @@ public class Hash_map {
 
     System.out.println("10. Write a Java program to get the value of a specified key in a map.");
     System.out.println(map.get(1));
-
-
   }
 }
