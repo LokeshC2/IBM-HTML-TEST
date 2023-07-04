@@ -29,7 +29,7 @@ public class Hash_map {
 
     System.out.println("6. Write a Java program to get a shallow copy of a HashMap instance.");
     HashMap<Integer, String> map3 = new HashMap<Integer, String>();
-    map3 = (HashMap)map.clone();
+    map3 = (HashMap<Integer, String>) map.clone();
     System.out.println(map3);
 
     System.out.println("7. Write a Java program to test if a map contains a mapping for the specified key.");
