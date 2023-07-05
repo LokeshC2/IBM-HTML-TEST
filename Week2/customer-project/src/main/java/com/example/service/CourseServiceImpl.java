@@ -5,7 +5,6 @@ import com.example.models.Course;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.naming.spi.DirStateFactory.Result;
 
 public class CourseServiceImpl implements CourseService {
 

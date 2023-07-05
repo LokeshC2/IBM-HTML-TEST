@@ -1,4 +1,4 @@
-package com.example;
+package com.example.service;
 
 import java.util.List;
 
@@ -8,4 +8,5 @@ public interface EmployeeService {
   public void addEmployee(Employee employee);
   public List<Employee> getEmployees();
   public List<Employee> findEmployeeByName(String name);
+  
 }

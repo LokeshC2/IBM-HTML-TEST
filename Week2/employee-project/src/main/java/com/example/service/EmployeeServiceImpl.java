@@ -1,5 +1,6 @@
-package com.example;
+package com.example.service;
 
+import com.example.Connector;
 import com.example.models.Employee;
 import java.sql.Connection;
 import java.sql.ResultSet;
