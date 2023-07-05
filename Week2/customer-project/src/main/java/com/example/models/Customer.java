@@ -1,6 +1,7 @@
 package com.example.models;
 
 public class Customer {
+
   private int id;
   private String fname;
   private String lname;
@@ -47,5 +48,18 @@ public class Customer {
     this.email = email;
   }
 
-  
+  @Override
+  public String toString() {
+    return (
+      "Customer [id=" +
+      id +
+      ", fname=" +
+      fname +
+      ", lname=" +
+      lname +
+      ", email=" +
+      email +
+      "]\n"
+    );
+  }
 }
