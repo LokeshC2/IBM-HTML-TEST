@@ -1,32 +1,32 @@
 package com.example.service;
 
+import com.example.Connector;
+import com.example.models.Order;
+import com.example.models.Product;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.Connector;
-import com.example.models.Product;
-
 public class Store implements Inventory {
 
-  {
-
-  }
-
   @Override
-  public void addProduct(String name, int quantity, int price) {
-    Connection conn = Connector.getConnection();
+  public void addProduct(Product product) {
+    Connection connection = Connector.getConnection();
     try {
-      conn.createStatement().execute(
-        "INSERT INTO products (name, quantity, price) VALUES ('" +
-        name +
-        "', '" +
-        quantity +
-        "', '" +
-        price +
-        "')"
-      );
+      connection
+        .createStatement()
+        .execute(
+          "INSERT INTO products (name, cost, quantity) VALUES ('" +
+          product.getName() +
+          "', '" +
+          product.getCost() +
+          "', '" +
+          product.getQuantity() +
+          "')"
+        );
     } catch (Exception e) {
       System.out.println("Operation failed: \n" + e.getMessage());
     }
@@ -34,29 +34,33 @@ public class Store implements Inventory {
 
   @Override
   public void deleteProduct(int id) {
-    Connection conn = Connector.getConnection();
+    Connection connection = Connector.getConnection();
     try {
-      conn.createStatement().execute(
-        "DELETE FROM products WHERE id = '" + id + "'"
-      );
+      connection
+        .createStatement()
+        .execute("DELETE FROM products WHERE id = " + id);
     } catch (Exception e) {
       System.out.println("Operation failed: \n" + e.getMessage());
     }
   }
 
   @Override
-  public List<Product> getAllProducts() {
-    ArrayList <Product> products = new ArrayList<Product>();
-    Connection conn = Connector.getConnection();
+  public List<Product> findProductByName(String name) {
+    Connection connection = Connector.getConnection();
+    ArrayList<Product> products = new ArrayList<Product>();
     try {
-      ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM products");
+      ResultSet resultSet = connection
+        .createStatement()
+        .executeQuery(
+          "SELECT * FROM products WHERE name LIKE '%" + name + "%'"
+        );
       while (resultSet.next()) {
         products.add(
           new Product(
             resultSet.getInt("id"),
             resultSet.getString("name"),
-            resultSet.getInt("quantity"),
-            resultSet.getInt("price")
+            resultSet.getInt("cost"),
+            resultSet.getInt("quantity")
           )
         );
       }
@@ -67,18 +71,79 @@ public class Store implements Inventory {
   }
 
   @Override
-  public Product getProductById(int id) {
-    Connection conn = Connector.getConnection();
+  public List<Product> getAllProduct() {
+    Connection connection = Connector.getConnection();
+    ArrayList<Product> products = new ArrayList<Product>();
+    try {
+      ResultSet resultSet = connection
+        .createStatement()
+        .executeQuery("SELECT * FROM products");
+      while (resultSet.next()) {
+        products.add(
+          new Product(
+            resultSet.getInt("id"),
+            resultSet.getString("name"),
+            resultSet.getInt("cost"),
+            resultSet.getInt("quantity")
+          )
+        );
+      }
+    } catch (Exception e) {
+      System.out.println("Operation failed: \n" + e.getMessage());
+    }
+    return products;
+  }
+
+  @Override
+  public Order sellProduct(int id, int quantity) {
+    Product product = findProductById(id);
+    if (product.getQuantity() < quantity) {
+      System.out.println("Not enough product in stock");
+      return null;
+    }
+
+    int totalCost = product.getCost() * quantity;
+    System.out.println(
+      "Total cost of " + quantity + " " + product.getName() + " is " + totalCost
+    );
+
+    updateProductQuantity(id, product.getQuantity() - quantity);
+
+    Connection connection = Connector.getConnection();
+    try {
+      PreparedStatement p = connection.prepareStatement(
+        "INSERT INTO orders (product_id, quantity, total_cost) VALUES (?, ?, ?)",
+        Statement.RETURN_GENERATED_KEYS
+      );
+      p.setInt(1, id);
+      p.setInt(2, quantity);
+      p.setInt(3, totalCost);
+      p.executeUpdate();
+      ResultSet resultSet = p.getGeneratedKeys();
+      if (resultSet.next()) {
+        return new Order(resultSet.getInt(1), id, quantity, totalCost);
+      }
+    } catch (Exception e) {
+      System.out.println("Operation failed: \n" + e.getMessage());
+    }
+    return null;
+  }
+
+  private Product findProductById(int id) {
+    Connection connection = Connector.getConnection();
     Product product = null;
     try {
-      ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM products WHERE id = '" + id + "'");
+      ResultSet resultSet = connection
+        .createStatement()
+        .executeQuery("SELECT * FROM products WHERE id = '" + id + "'");
       while (resultSet.next()) {
-        product = new Product(
-          resultSet.getInt("id"),
-          resultSet.getString("name"),
-          resultSet.getInt("quantity"),
-          resultSet.getInt("price")
-        );
+        product =
+          new Product(
+            resultSet.getInt("id"),
+            resultSet.getString("name"),
+            resultSet.getInt("cost"),
+            resultSet.getInt("quantity")
+          );
       }
     } catch (Exception e) {
       System.out.println("Operation failed: \n" + e.getMessage());
@@ -87,52 +152,14 @@ public class Store implements Inventory {
   }
 
   @Override
-  public void updateProduct(int id, String name, int quantity, int price) {
-    Connection conn = Connector.getConnection();
-    try {
-      conn.createStatement().execute(
-        "UPDATE products SET name = '" +
-        name +
-        "', quantity = '" +
-        quantity +
-        "', price = '" +
-        price +
-        "' WHERE id = '" +
-        id +
-        "'"
-      );
-    } catch (Exception e) {
-      System.out.println("Operation failed: \n" + e.getMessage());
-    }
-  }
-
-  @Override
-  public void updateProductName(int id, String name) {
-    Connection conn = Connector.getConnection();
-    try {
-      conn.createStatement().execute(
-        "UPDATE products SET name = '" +
-        name +
-        "' WHERE id = '" +
-        id +
-        "'"
-      );
-    } catch (Exception e) {
-      System.out.println("Operation failed: \n" + e.getMessage());
-    }
-  }
-
-  @Override
   public void updateProductPrice(int id, int price) {
-    Connection conn = Connector.getConnection();
+    Connection connection = Connector.getConnection();
     try {
-      conn.createStatement().execute(
-        "UPDATE products SET price = '" +
-        price +
-        "' WHERE id = '" +
-        id +
-        "'"
-      );
+      connection
+        .createStatement()
+        .execute(
+          "UPDATE products SET cost = '" + price + "' WHERE id = '" + id + "'"
+        );
     } catch (Exception e) {
       System.out.println("Operation failed: \n" + e.getMessage());
     }
@@ -140,18 +167,19 @@ public class Store implements Inventory {
 
   @Override
   public void updateProductQuantity(int id, int quantity) {
-    Connection conn = Connector.getConnection();
+    Connection connection = Connector.getConnection();
     try {
-      conn.createStatement().execute(
-        "UPDATE products SET quantity = '" +
-        quantity +
-        "' WHERE id = '" +
-        id +
-        "'"
-      );
+      connection
+        .createStatement()
+        .execute(
+          "UPDATE products SET quantity = '" +
+          quantity +
+          "' WHERE id = '" +
+          id +
+          "'"
+        );
     } catch (Exception e) {
       System.out.println("Operation failed: \n" + e.getMessage());
     }
   }
-  
 }
