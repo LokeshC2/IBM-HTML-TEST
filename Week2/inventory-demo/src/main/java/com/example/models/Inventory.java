@@ -4,23 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@NoArgsConstructor
 @Setter
-@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "inventory")
-@ToString
+@NoArgsConstructor
 public class Inventory {
-
-  public Inventory(int id2, String name2, int i) {
-  }
 
   @Column(name = "inventory_id")
   @Id
@@ -34,8 +29,13 @@ public class Inventory {
 
   @Column(name = "product_count")
   private int quantity;
-}
 
+  public Inventory(int product_id, String name, int quantity) {
+    this.product_id = product_id;
+    this.name = name;
+    this.quantity = quantity;
+  }
+}
 /* 
 SQL to create the table:
 CREATE TABLE inventory (
