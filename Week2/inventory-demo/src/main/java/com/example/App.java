@@ -13,7 +13,7 @@ import org.hibernate.Session;
 public class App {
 
   public static void main(String[] args) throws SQLException {
-    Product product = new Product(1, "Fancy Widget", 19.99);
+    Product product = new Product("Fancy Widget", 19.99);
     System.out.println(product);
 
     InventoryService inventoryService = new InventoryServiceImpl();
