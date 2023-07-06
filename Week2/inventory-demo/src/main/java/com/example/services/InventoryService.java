@@ -1,0 +1,14 @@
+package com.example.services;
+
+import com.example.models.Inventory;
+import java.util.List;
+
+public interface InventoryService {
+  public Inventory createInventory(Inventory inventory);
+
+  public List<Inventory> getAllInventory();
+
+  public Inventory getInventoryByid(int inventoryId);
+
+  public List<Inventory> getInventoryByProductName(String productName);
+}
