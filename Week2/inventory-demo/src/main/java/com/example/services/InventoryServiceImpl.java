@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import com.example.factory.MyHibernateSessionFactory;
 import com.example.models.Inventory;
+import com.example.models.Product;
 
 public class InventoryServiceImpl implements InventoryService {
 
@@ -50,4 +51,22 @@ public class InventoryServiceImpl implements InventoryService {
     return inventoryList;    
   }
   
+  @Override
+  public Inventory updateInventory(Inventory inventory) {
+    Session session = MyHibernateSessionFactory.getSessionFactory().openSession();
+    session.beginTransaction();
+    session.merge(inventory);
+    session.close();
+    return inventory;
+  }
+
+  @Override
+  public Product addProductToInventory(Product product, Inventory inventory) {
+    Session session = MyHibernateSessionFactory.getSessionFactory().openSession();
+    session.beginTransaction();
+    session.save(product);
+    session.getTransaction().commit();
+    session.close();
+    return product;
+  }
 }

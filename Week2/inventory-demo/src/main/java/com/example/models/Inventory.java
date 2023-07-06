@@ -19,6 +19,9 @@ import lombok.ToString;
 @ToString
 public class Inventory {
 
+  public Inventory(int id2, String name2, int i) {
+  }
+
   @Column(name = "inventory_id")
   @Id
   private int id;

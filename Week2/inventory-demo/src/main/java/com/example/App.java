@@ -18,13 +18,26 @@ public class App {
 
     InventoryService inventoryService = new InventoryServiceImpl();
     List<Inventory> inventories = inventoryService.getInventoryByProductName("Fancy Widget");
-    if (inventories.isEmpty()) return;
-    Inventory inventory = inventories.get(0);
+    Inventory inventory;
+    if (inventories.isEmpty()) {
+      inventory = inventoryService.createInventory(new Inventory(product.getId(), product.getName(), 100));
+    } else {
+      inventory = inventories.get(0);
+    }
+    System.out.println("Inventory: " + inventory);
     
+    product = new Product(inventory.getName(), 29.99);
+    product = inventoryService.addProductToInventory(product, inventory);
+    System.out.println("Product saved successfully with id: " + product.getId());
+
     Session session = MyHibernateSessionFactory.getSessionFactory().openSession();
     session.beginTransaction();
-    session.save(new Product(inventory.getName(), 29.99));
+    List<Product> products = session.createQuery("from Product", Product.class).list();
     session.getTransaction().commit();
     session.close();
+    System.out.println("Products: " + products);
+
+    inventory.setQuantity(50);
+    inventoryService.updateInventory(inventory);
   }
 }
