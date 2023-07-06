@@ -27,13 +27,18 @@ public class Product {
   private String name;
 
   @Column(name = "product_price")
-  private int price;
+  private double price;
+
+  public Product(String name, double price) {
+    this.name = name;
+    this.price = price;
+  }
+
 }
 /*
 SQL to create the table:
 CREATE TABLE products (
   product_id SERIAL PRIMARY KEY,
   product_name VARCHAR(50),
-  product_price INT
-)
+  product_price DOUBLE PRECISION;
 */
