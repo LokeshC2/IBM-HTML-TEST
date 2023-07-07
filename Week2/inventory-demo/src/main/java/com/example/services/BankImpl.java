@@ -4,12 +4,12 @@ import com.example.Exceptions.AccountNotFoundException;
 import com.example.Exceptions.InsufficientFundsException;
 import com.example.factory.MyHibernateSessionFactory;
 import com.example.models.Account;
-
 import org.hibernate.Session;
 
 public class BankImpl implements Bank {
 
-  private Account getAccount(int accountNumber) throws AccountNotFoundException {
+  private Account getAccount(int accountNumber)
+    throws AccountNotFoundException {
     Session session = MyHibernateSessionFactory
       .getSessionFactory()
       .openSession();
@@ -23,14 +23,15 @@ public class BankImpl implements Bank {
 
   @Override
   public int openAccount(String name, double balance) {
+    Account account = new Account(name, balance);
     Session session = MyHibernateSessionFactory
       .getSessionFactory()
       .openSession();
     session.beginTransaction();
-    int id = (int) session.save(new Account(name, balance));
+    session.save(account);
     session.getTransaction().commit();
     session.close();
-    return id;
+    return account.getId();
   }
 
   @Override
@@ -52,7 +53,8 @@ public class BankImpl implements Bank {
   }
 
   @Override
-  public void deposit(double amount, int accountNumber) throws AccountNotFoundException {
+  public void deposit(double amount, int accountNumber)
+    throws AccountNotFoundException {
     Account account = getAccount(accountNumber);
     Session session = MyHibernateSessionFactory
       .getSessionFactory()
@@ -65,7 +67,8 @@ public class BankImpl implements Bank {
   }
 
   @Override
-  public void withdraw(double amount, int accountNumber) throws InsufficientFundsException, AccountNotFoundException {
+  public void withdraw(double amount, int accountNumber)
+    throws InsufficientFundsException, AccountNotFoundException {
     Account account = getAccount(accountNumber);
     if (account.getBalance() < amount) throw new InsufficientFundsException();
     account.setBalance(account.getBalance() - amount);
@@ -77,5 +80,4 @@ public class BankImpl implements Bank {
     session.getTransaction().commit();
     session.close();
   }
-
 }
