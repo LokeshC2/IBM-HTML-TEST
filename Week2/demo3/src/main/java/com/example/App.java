@@ -9,7 +9,13 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
 
-  public static void main_old(String[] args) {
+  public static void main(String[] args) {
+    // CD_example(args);
+    Order_example(args);
+    // Department_example(args);
+  }
+
+  public static void CD_example(String[] args) {
     SessionFactory sessionFactory = new Configuration()
       .configure("hibernate.cfg.xml")
       .addAnnotatedClass(CD.class)
@@ -36,7 +42,7 @@ public class App {
     }
   }
 
-  public static void main(String[] args) {
+  public static void Order_example(String[] args) {
     SessionFactory sessionFactory = new Configuration()
       .configure("hibernate.cfg.xml")
       .addAnnotatedClass(Order.class)
@@ -49,6 +55,7 @@ public class App {
     Shipment shipment = new Shipment();
     shipment.setCity_name("City1");
     shipment.setZip_code("Zip1");
+    shipment.setOrder(order);
 
     order.setShipment(shipment);
 
@@ -72,5 +79,37 @@ public class App {
     for (Shipment s : shipments) {
       System.out.println(s);
     }
+  }
+
+  private static void Department_example(String[] args) {
+    SessionFactory sessionFactory = new Configuration()
+      .configure("hibernate.cfg.xml")
+      .addAnnotatedClass(Department.class)
+      .addAnnotatedClass(Employee.class)
+      .buildSessionFactory();
+
+    Department department = new Department();
+    department.setDepartmentName("Department1");
+
+    Employee employee = new Employee();
+    employee.setEmployeeName("Employee1");
+
+    department.addEmployee(employee);
+
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    session.persist(department);
+    session.getTransaction().commit();
+    session.close();
+
+    session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Department> departments = session.createQuery("from Department", Department.class).getResultList();
+    List<Employee> employees = session.createQuery("from Employee", Employee.class).getResultList();
+    session.getTransaction().commit();
+    session.close();
+
+    departments.forEach(System.out::println);
+    employees.forEach(System.out::println);
   }
 }

@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -21,4 +24,8 @@ public class Shipment {
 
   @Column
   private String zip_code;
+
+  @OneToOne(mappedBy = "shipment")
+  @ToString.Exclude
+  private Order order;
 }
