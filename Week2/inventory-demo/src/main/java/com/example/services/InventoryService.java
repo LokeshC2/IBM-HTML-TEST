@@ -17,4 +17,6 @@ public interface InventoryService {
   public Inventory updateInventory(Inventory inventory);
 
   public Product addProductToInventory(Product product, Inventory inventory);
+
+  public void deleteInventory(int inventoryId);
 }

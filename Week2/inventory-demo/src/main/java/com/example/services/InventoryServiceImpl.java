@@ -69,4 +69,14 @@ public class InventoryServiceImpl implements InventoryService {
     session.close();
     return product;
   }
+
+  @Override
+  public void deleteInventory(int inventoryId) {
+    Session session = MyHibernateSessionFactory.getSessionFactory().openSession();
+    session.beginTransaction();
+    Inventory inventory = session.get(Inventory.class, inventoryId);
+    session.delete(inventory);
+    session.getTransaction().commit();
+    session.close();
+  }
 }

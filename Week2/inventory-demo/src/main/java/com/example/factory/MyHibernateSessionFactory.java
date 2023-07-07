@@ -1,5 +1,6 @@
 package com.example.factory;
 
+import com.example.models.Account;
 import com.example.models.Inventory;
 import com.example.models.Product;
 import org.hibernate.SessionFactory;
@@ -15,6 +16,7 @@ public class MyHibernateSessionFactory {
         .configure("hibernate.cfg.xml")
         .addAnnotatedClass(Inventory.class)
         .addAnnotatedClass(Product.class)
+        .addAnnotatedClass(Account.class)
         .buildSessionFactory();
     return sessionFactory;
   }
