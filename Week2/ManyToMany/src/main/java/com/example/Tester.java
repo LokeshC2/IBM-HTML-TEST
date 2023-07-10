@@ -1,60 +1,47 @@
 package com.example;
 
+import com.example.factory.MySessionFactory;
+import com.example.model.*;
+
+import java.util.List;
+
 import org.hibernate.Session;
 
-import com.example.factory.MySessionFactory;
-import com.example.model.InternationalAlbum;
-import com.example.model.NationalAlbum;
-import com.example.model.Singer;
-
 public class Tester {
-    public static void main(String[] args) {
 
-        Singer singer1 = new Singer();
-        singer1.setSingerName("Singer1");
-        singer1.setSingerCountry("Country1");
-        
-        Singer singer2 = new Singer();
-        singer2.setSingerName("Singer2");
-        singer2.setSingerCountry("Country2");
+  public static void main(String[] args) {
+    Student s1 = new Student();
+    s1.setStudentName("John");
+    Student s2 = new Student();
+    s2.setStudentName("Mary");
+    Student s3 = new Student();
+    s3.setStudentName("Jane");
+    Course c1 = new Course();
+    c1.setCourseName("Java");
+    Course c2 = new Course();
+    c2.setCourseName("Python");
 
-        Singer singer3 = new Singer();
-        singer3.setSingerName("Singer3");
-        singer3.setSingerCountry("Country3");
+    s1.addCourse(c1);
+    s1.addCourse(c2);
+    s2.addCourse(c1);
+    s3.addCourse(c2);
 
-        Singer singer4 = new Singer();
-        singer4.setSingerName("Singer4");
-        singer4.setSingerCountry("Country4");
-        
-        NationalAlbum nAlbum = new NationalAlbum();
-        nAlbum.setAlbumName("Album1");
-        nAlbum.setAlbumPrice("INR100");
-        nAlbum.setSinger(singer4);
+    Session session = MySessionFactory.getSessionFactory().openSession();
+    session.beginTransaction();
+    session.save(s1);
+    session.save(s2);
+    session.save(s3);
+    session.getTransaction().commit();
+    session.close();
 
-        NationalAlbum nAlbum2 = new NationalAlbum();
-        nAlbum2.setAlbumName("Album2");
-        nAlbum2.setAlbumPrice("INR200");
-        nAlbum2.setSinger(singer1);
-        
-        InternationalAlbum iAlbum = new InternationalAlbum();
-        iAlbum.setAlbumName("Album3");
-        iAlbum.setAlbumLanguage("English");
-        iAlbum.setAlbumPrice("USD100");
-        iAlbum.setSinger(singer1);
+    session = MySessionFactory.getSessionFactory().openSession();
+    session.beginTransaction();
+    List<Student> students = session.createQuery("from Student", Student.class).list();
+    List<Course> courses = session.createQuery("from Course", Course.class).list();
+    courses.forEach(System.out::println);
+    students.forEach(System.out::println);
+    session.getTransaction().commit();
+    session.close();
 
-        InternationalAlbum iAlbum2 = new InternationalAlbum();
-        iAlbum2.setAlbumName("Album4");
-        iAlbum2.setAlbumLanguage("English");
-        iAlbum2.setAlbumPrice("USD200");
-        iAlbum2.setSinger(singer2);
-
-        Session session = MySessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(nAlbum);
-        session.save(nAlbum2);
-        session.save(iAlbum);
-        session.save(iAlbum2);
-        session.getTransaction().commit();
-        session.close();
-    }
+  }
 }

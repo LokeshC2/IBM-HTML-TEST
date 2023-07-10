@@ -3,9 +3,8 @@ package com.example.factory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.example.model.Album;
-import com.example.model.InternationalAlbum;
-import com.example.model.NationalAlbum;
+import com.example.model.Student;
+import com.example.model.Course;
 
 public class MySessionFactory {
 
@@ -15,9 +14,8 @@ public class MySessionFactory {
     if (sessionFactory == null) {
       Configuration configuration = new Configuration();
       configuration.configure("hibernate.cfg.xml");
-      configuration.addAnnotatedClass(Album.class);
-      configuration.addAnnotatedClass(NationalAlbum.class);
-      configuration.addAnnotatedClass(InternationalAlbum.class);
+      configuration.addAnnotatedClass(Course.class);
+      configuration.addAnnotatedClass(Student.class);
       sessionFactory = configuration.buildSessionFactory();
     }
     return sessionFactory;

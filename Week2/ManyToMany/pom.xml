@@ -6,10 +6,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>demo3</artifactId>
+  <artifactId>manytomany</artifactId>
   <version>1.0.0</version>
 
-  <name>demo3</name>
+  <name>manytomany</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
