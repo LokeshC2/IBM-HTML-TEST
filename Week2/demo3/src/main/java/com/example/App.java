@@ -81,7 +81,7 @@ public class App {
     }
   }
 
-  private static void Department_example(String[] args) {
+  public static void Department_example(String[] args) {
     SessionFactory sessionFactory = new Configuration()
       .configure("hibernate.cfg.xml")
       .addAnnotatedClass(Department.class)
