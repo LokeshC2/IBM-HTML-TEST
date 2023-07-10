@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,14 +20,18 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
+
   @Column(name = "employee_id")
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
   @Column(name = "employee_name")
   private String name;
-  @Column(name = "employee_address")
+
   @Embedded
   private Address address;
+
   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id")
   @ToString.Exclude

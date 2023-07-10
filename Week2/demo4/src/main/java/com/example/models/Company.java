@@ -1,7 +1,6 @@
 package com.example.models;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -11,10 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
 @Entity
@@ -23,14 +22,25 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(exclude = "employees")
 public class Company {
+
   @Column(name = "company_id")
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
   @Column(name = "company_name")
+  @NonNull
   private String name;
+
   @Column(name = "company_address")
+  @NonNull
   @Embedded
   private Address address;
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+
+  @OneToMany(
+    cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "company"
+  )
   private List<Employee> employees;
 }

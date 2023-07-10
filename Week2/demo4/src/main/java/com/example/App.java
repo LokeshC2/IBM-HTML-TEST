@@ -1,63 +1,172 @@
 package com.example;
 
-import com.example.models.*;
-import java.util.List;
+import com.example.service.EmploymentService;
+import com.example.service.EmploymentServiceImpl;
+import com.example.util.SafeIntegerInput;
+import java.util.Scanner;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
+/**
+ * App
+ */
 public class App {
 
+  static Scanner sc = new Scanner(System.in);
+  static SafeIntegerInput safeIntegerInput = new SafeIntegerInput(sc);
+  static EmploymentService es = new EmploymentServiceImpl();
+
   public static void main(String[] args) {
-    first_example(args);
+    printHello();
+    int menuChoice = 0;
+    do {
+      System.out.println("Enter 1 for company operations");
+      System.out.println("Enter 2 for employee operations");
+      System.out.println("Enter 0 to exit");
+      menuChoice = safeIntegerInput.get();
+
+      switch (menuChoice) {
+        case 1:
+          companyMenu();
+          break;
+        case 2:
+          System.out.println("Enter company id: ");
+          int companyId = safeIntegerInput.get();
+          employeeMenu(companyId);
+          break;
+        case 0:
+          System.out.println(
+            "Thank you for using Employment Management System"
+          );
+          break;
+        default:
+          System.out.println("Invalid choice");
+          break;
+      }
+    } while (menuChoice != 0);
   }
 
-  public static void first_example(String[] args) {
-    SessionFactory sessionFactory = new Configuration()
-      .configure("hibernate.cfg.xml")
-      .addAnnotatedClass(Employee.class)
-      .addAnnotatedClass(Company.class)
-      .buildSessionFactory();
+  private static void printHello() {
+    System.out.println("Welcome to Employment Management System");
+  }
 
-    Company company = new Company();
-    company.setName("Company1");
-    company.setAddress(new Address("Street1", "City1", "State1", "Zip1"));
-  
-    Employee employee = new Employee();
-    employee.setName("Employee1");
-    employee.setAddress(new Address("Street2", "City2", "State2", "Zip2"));
-    employee.setCompany(company);
+  private static void showCompanyMenu() {
+    System.out.println("Enter 1 to create a company");
+    System.out.println("Enter 2 to get all companies");
+    System.out.println("Enter 3 to get a company by id");
+    System.out.println("Enter 4 to find a company by name");
+    System.out.println("Enter 5 to update a company");
+    System.out.println("Enter 6 to delete a company");
+    System.out.println("Enter 0 to go back");
+  }
 
-    Employee employee2 = new Employee();
-    employee2.setName("Employee2");
-    employee2.setAddress(new Address("Street3", "City3", "State3", "Zip3"));
-    employee2.setCompany(company);
+  private static void showEmployeeMenu() {
+    System.out.println("Enter 1 to create an employee");
+    System.out.println("Enter 2 to get all employees");
+    System.out.println("Enter 3 to get an employee by id");
+    System.out.println("Enter 4 to find an employee by name");
+    System.out.println("Enter 5 to update an employee");
+    System.out.println("Enter 6 to delete an employee");
+    System.out.println("Enter 7 to move an employee to another company");
+    System.out.println("Enter 0 to go back");
+  }
 
-    Employee employee3 = new Employee();
-    employee3.setName("Employee3");
-    employee3.setAddress(new Address("Street4", "City4", "State4", "Zip4"));
-    employee3.setCompany(company);
+  private static void companyMenu() {
+    int companyMenuChoice = 0;
+    int companyId = 0;
+    do {
+      showCompanyMenu();
+      companyMenuChoice = safeIntegerInput.get();
+      switch (companyMenuChoice) {
+        case 1:
+          es.createCompany();
+          break;
+        case 2:
+          es.getAllCompanies();
+          break;
+        case 3:
+          System.out.println("Enter company id: ");
+          companyId = safeIntegerInput.get();
+          es.getCompanyById(companyId);
+          System.out.println("Select this company? (y/n)");
+          String choice = sc.nextLine();
+          if (choice.equals("y") || choice.equals("Y")) {
+            System.out.println("Company selected");
+            employeeMenu(companyId);
+          } else {
+            System.out.println("Company not selected");
+          }
+          break;
+        case 4:
+          System.out.println("Enter company name: ");
+          String name = sc.nextLine();
+          es.findCompanyByName(name);
+          break;
+        case 5:
+          System.out.println("Enter company id: ");
+          companyId = safeIntegerInput.get();
+          es.updateCompany(companyId);
+          break;
+        case 6:
+          System.out.println("Enter company id: ");
+          companyId = safeIntegerInput.get();
+          es.deleteCompany(companyId);
+          break;
+        case 0:
+          System.out.println("Going back to main menu");
+          break;
+        default:
+          System.out.println("Invalid choice");
+          break;
+      }
+    } while (companyMenuChoice != 0);
+  }
 
-    company.setEmployees(List.of(employee, employee2, employee3));
-
-    try (Session session = sessionFactory.openSession()) {
-      session.beginTransaction();
-      session.save(company);
-      session.getTransaction().commit();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    try (Session session = sessionFactory.openSession()) {
-      session.beginTransaction();
-      List<Company> companies = session.createQuery("from Company", Company.class).getResultList();
-      List<Employee> employees = session.createQuery("from Employee", Employee.class).getResultList();
-      companies.forEach(System.out::println);
-      employees.forEach(System.out::println);
-      session.getTransaction().commit();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+  private static void employeeMenu(int companyId) {
+    int employeeMenuChoice = 0;
+    int employeeId = 0;
+    do {
+      showEmployeeMenu();
+      employeeMenuChoice = safeIntegerInput.get();
+      switch (employeeMenuChoice) {
+        case 1:
+          es.createEmployeeInCompany(companyId);
+          break;
+        case 2:
+          es.getAllEmployeesInCompany(companyId);
+          break;
+        case 3:
+          System.out.println("Enter employee id: ");
+          employeeId = safeIntegerInput.get();
+          es.getEmployeeById(employeeId);
+          break;
+        case 4:
+          System.out.println("Enter employee name: ");
+          String name = sc.nextLine();
+          es.findEmployeeByName(name);
+          break;
+        case 5:
+          System.out.println("Enter employee id: ");
+          employeeId = safeIntegerInput.get();
+          es.updateEmployee(employeeId);
+          break;
+        case 6:
+          System.out.println("Enter employee id: ");
+          employeeId = safeIntegerInput.get();
+          es.deleteEmployee(employeeId);
+          break;
+        case 7:
+          System.out.println("Enter employee id: ");
+          employeeId = safeIntegerInput.get();
+          System.out.println("Enter new company id: ");
+          int newCompanyId = safeIntegerInput.get();
+          es.moveEmployeeToCompany(employeeId, newCompanyId);
+          break;
+        case 0:
+          System.out.println("Going back to main menu");
+          break;
+        default:
+          System.out.println("Invalid choice");
+          break;
+      }
+    } while (employeeMenuChoice != 0);
   }
 }
