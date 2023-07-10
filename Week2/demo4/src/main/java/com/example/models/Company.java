@@ -39,7 +39,7 @@ public class Company {
 
   @OneToMany(
     cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY,
+    fetch = FetchType.EAGER,
     mappedBy = "company"
   )
   private List<Employee> employees;
