@@ -1,9 +1,7 @@
 package org.example;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.sql.DataSource;
 import org.example.config.SpringConfig;
+import org.example.dao.CarDao;
 import org.example.model.Car;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,32 +13,24 @@ public class App {
     try {
       context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-      DataSource dataSource = context.getBean("dataSource", DataSource.class);
+      CarDao carDao = context.getBean("carDao", CarDao.class);
 
       Car car = context.getBean("car", Car.class);
-      System.out.println(car);
 
-      Car car2 = context.getBean("car", Car.class);
+      car.setModel("BMW");
+      car.setColor("Black");
+      carDao.createCar(car);
 
-      car.setColor("Red");
-      car2.setColor("Blue");
+      car.setModel("Audi");
+      car.setColor("White");
+      carDao.createCar(car);
 
-      car.saveTo(dataSource);
-      car2.saveTo(dataSource);
+      car.setModel("Mercedes");
+      car.setColor("Silver");
+      carDao.createCar(car);
+      
+      carDao.listCars().forEach(System.out::println);
 
-      PreparedStatement preparedStatement = dataSource
-        .getConnection()
-        .prepareStatement("SELECT * FROM car");
-      ResultSet resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()) {
-        System.out.println(
-          resultSet.getInt("id") +
-          " " +
-          resultSet.getString("model") +
-          " " +
-          resultSet.getString("color")
-        );
-      }
     } catch (Exception e) {
       e.printStackTrace();
     }

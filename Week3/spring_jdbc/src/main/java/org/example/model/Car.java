@@ -1,8 +1,5 @@
 package org.example.model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.sql.DataSource;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,21 +24,4 @@ public class Car {
   private String model;
 
   private String color;
-
-  public void saveTo(DataSource dataSource) {
-    try {
-      PreparedStatement preparedStatement = dataSource
-        .getConnection()
-        .prepareStatement(
-          "INSERT INTO car (model, color) VALUES (?, ?)",
-          PreparedStatement.RETURN_GENERATED_KEYS
-        );
-      preparedStatement.setString(1, model);
-      preparedStatement.setString(2, color);
-
-      this.id = preparedStatement.executeUpdate();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 }
