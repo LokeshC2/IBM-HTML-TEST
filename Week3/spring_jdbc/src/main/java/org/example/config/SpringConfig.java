@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan(basePackages = "org.example.model")
+@ComponentScan(basePackages = "org.example.*")
 @PropertySource("classpath:application.properties")
 public class SpringConfig {
 
@@ -23,7 +23,7 @@ public class SpringConfig {
     dataSource.setMinPoolSize(5);
     dataSource.setMaxPoolSize(20);
     dataSource.setMaxIdleTime(5000);
-    
+
     return dataSource;
   }
 }

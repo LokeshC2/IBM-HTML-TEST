@@ -28,8 +28,15 @@ public class CarDaoImpl implements CarDao {
     PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO car (model, color) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
     preparedStatement.setString(1, car.getModel());
     preparedStatement.setString(2, car.getColor());
-    car.setId(preparedStatement.executeUpdate());
-    return car;
+    Car createdCar = new Car();
+    preparedStatement.executeUpdate();
+    ResultSet resultSet = preparedStatement.getGeneratedKeys();
+    if (resultSet.next()) {
+      createdCar.setId(resultSet.getInt(1));
+    }
+    createdCar.setModel(car.getModel());
+    createdCar.setColor(car.getColor());
+    return createdCar;
   }
 
   @Override
@@ -47,5 +54,19 @@ public class CarDaoImpl implements CarDao {
     }
     return cars;
   }
-  
+
+  @Override
+  public Car findCarById(int Id) throws SQLException {
+    Connection connection = carFactory.getConnection();
+    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM car WHERE id = ?");
+    preparedStatement.setInt(1, Id);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    Car car = new Car();
+    if (resultSet.next()) {
+      car.setId(resultSet.getInt("id"));
+      car.setModel(resultSet.getString("model"));
+      car.setColor(resultSet.getString("color"));
+    }
+    return car;
+  }
 }

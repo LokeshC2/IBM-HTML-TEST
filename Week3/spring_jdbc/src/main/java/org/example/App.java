@@ -1,8 +1,8 @@
 package org.example;
 
 import org.example.config.SpringConfig;
-import org.example.dao.CarDao;
 import org.example.model.Car;
+import org.example.service.CarService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,23 +13,23 @@ public class App {
     try {
       context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-      CarDao carDao = context.getBean("carDao", CarDao.class);
+      CarService carService = context.getBean("carService", CarService.class);
 
       Car car = context.getBean("car", Car.class);
 
       car.setModel("BMW");
       car.setColor("Black");
-      carDao.createCar(car);
+      carService.createCar(car);
 
       car.setModel("Audi");
       car.setColor("White");
-      carDao.createCar(car);
+      carService.createCar(car);
 
       car.setModel("Mercedes");
       car.setColor("Silver");
-      carDao.createCar(car);
+      carService.createCar(car);
       
-      carDao.listCars().forEach(System.out::println);
+      carService.listCars().forEach(System.out::println);
 
     } catch (Exception e) {
       e.printStackTrace();

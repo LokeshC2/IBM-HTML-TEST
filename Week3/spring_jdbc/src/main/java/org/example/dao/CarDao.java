@@ -11,4 +11,6 @@ public interface CarDao {
 
   List<Car> listCars() throws SQLException;
 
+  Car findCarById(int Id) throws SQLException;
+
 }
