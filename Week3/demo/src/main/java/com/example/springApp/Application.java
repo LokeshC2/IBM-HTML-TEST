@@ -1,18 +1,19 @@
 package com.example.springApp;
 
+import com.example.springApp.config.SpringConfig;
 import com.example.springApp.model.Department;
 import com.example.springApp.model.Employee;
 import com.example.springApp.model.Location;
 import com.example.springApp.model.Student;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
 
   public static void main(String[] args) {
     ApplicationContext context;
     try {
-      context = new ClassPathXmlApplicationContext("applicationContext.xml");
+      context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
       Employee employee = context.getBean("employee", Employee.class);
 

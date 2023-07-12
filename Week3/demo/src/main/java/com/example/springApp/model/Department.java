@@ -7,14 +7,12 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
 public class Department {
 
   private char Symbol;

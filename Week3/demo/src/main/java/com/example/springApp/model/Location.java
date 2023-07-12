@@ -1,6 +1,5 @@
 package com.example.springApp.model;
 
-import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +12,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
 public class Location {
   private String city;
   private String state;
