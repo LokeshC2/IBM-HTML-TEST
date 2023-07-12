@@ -1,9 +1,14 @@
 package com.example.demo.model;
 
-public class BaseballCoach implements Coach {
-  private FortuneService fortuneService;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-  public BaseballCoach(FortuneService fortuneService) {
+@Component
+public class BaseballCoach implements Coach {
+  
+  private FortuneService fortuneService;
+  
+  public BaseballCoach(@Qualifier("badFortuneService") FortuneService fortuneService) {
     System.out.println("Inside Baseball Coach Constructor");
     this.fortuneService = fortuneService;
   }
