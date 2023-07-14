@@ -1,5 +1,138 @@
 <html>
+
+<head>
+  <title>Student Application</title>
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    hr {
+      width: 75%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 1px solid black;
+      min-width: 50%;
+      text-align: center;
+    }
+
+    th,
+    td {
+      font-size: large;
+      padding: 10px;
+    }
+
+    input::placeholder {
+      font-size: large;
+      opacity: 0.5;
+    }
+
+    input[type="submit"] {
+      font-size: large;
+      padding: 10px;
+      margin: 10px;
+      width: 50%;
+      border-radius: 10px;
+      border: 1px solid black;
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .loading-indicator {
+      display: none;
+    }
+
+    .loading-indicator.htmx-request {
+      display: table-row;
+    }
+
+    .loading-indicator .htmx-request {
+      display: table-row;
+    }
+
+    .loading-indicator td {
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+
 <body>
-<h2>Hello World!</h2>
+  <h1 class="text-4xl p-2 m-5">Java Web Application</h1>
+  <hr>
+  <form hx-post="student" hx-target="#student-list" hx-swap="beforeend" hx-indicator="#loading-row">
+    <table class="border-0 p-2 flex self-center ">
+      <tr>
+        <th>
+          <label for="name">Name</label>
+        </th>
+        <td>
+          <input type="text" name="name" placeholder="Name">
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="branch">Branch</label>
+        </th>
+        <td>
+          <select name="branch" id="branch" hx-trigger="load" hx-get="fetchBranches" hx-target="#branch" hx-swap="outerHTML">
+            <option selected disabled hidden>Select branch</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="dept">Department</label>
+        </th>
+        <td>
+          <select name="dept" id="dept">
+            <option selected disabled hidden>Select branch first</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="grade">Grade</label>
+        </th>
+        <td>
+          <input type="text" name="grade" placeholder="Grade">
+        </td>
+      </tr>
+    </table>
+    <input class="p-4" type="submit" value="Submit">
+  </form>
+
+  <hr>
+
+  <h2>List of Students</h2>
+
+  <table hx-get="student" hx-trigger="load" hx-target="#student-list" hx-swap="innerHTML" hx-indicator="#loading-row">
+    <thead>
+      <tr id="loading-row" class="loading-indicator">
+        <td>Loading...</td>
+      </tr>
+      <tr id="table-heading">
+        <th>No Records Found
+          <a href="#" hx-get="student" hx-target="#student-list" hx-swap="innerHTML"
+            hx-indicator="#loading-row">Refresh</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="student-list">
+    </tbody>
+  </table>
 </body>
+
 </html>

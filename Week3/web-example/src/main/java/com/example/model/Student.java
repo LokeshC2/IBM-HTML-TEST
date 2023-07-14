@@ -13,5 +13,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Student {
   private String name;
-  private int age;
+  private String department;
+  private Grade grade;
+  private String Guide;
+
+  public enum Grade {
+    A, B, C, D, E, F
+  }
 }

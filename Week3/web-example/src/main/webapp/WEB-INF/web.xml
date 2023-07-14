@@ -1,20 +1,51 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  
+
   <servlet>
-    <servlet-name>Home</servlet-name>
-    <servlet-class>com.example.controller.HomeController</servlet-class>
+    <servlet-name>Student</servlet-name>
+    <servlet-class>com.example.controller.StudentController</servlet-class>
+    <init-param>
+      <param-name>guide</param-name>
+      <param-value>Dr. AYZ</param-value>
+    </init-param>
   </servlet>
-  
+
+  <servlet>
+    <servlet-name>getBranchAndDept</servlet-name>
+    <servlet-class>com.example.controller.BranchDepartmentController</servlet-class>
+    <init-param>
+      <param-name>Branches</param-name>
+      <param-value>Engineering,Commerce,Arts</param-value>
+    </init-param>
+    <init-param>
+      <param-name>Engineering</param-name>
+      <param-value>CSE,EEE,ME</param-value>
+    </init-param>
+    <init-param>
+      <param-name>Commerce</param-name>
+      <param-value>Accounting,Finance,Management</param-value>
+    </init-param>
+    <init-param>
+      <param-name>Arts</param-name>
+      <param-value>English,Philosophy,History</param-value>
+    </init-param>
+  </servlet>
+
   <servlet-mapping>
-    <servlet-name>Home</servlet-name>
-    <url-pattern>/home</url-pattern>
+    <servlet-name>Student</servlet-name>
+    <url-pattern>/student</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet-mapping>
+    <servlet-name>getBranchAndDept</servlet-name>
+    <url-pattern>/fetchBranches</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getBranchAndDept</servlet-name>
+    <url-pattern>/fetchDepartments</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
