@@ -1,0 +1,44 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>ListGames</servlet-name>
+    <servlet-class>com.example.view.ListGame</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddGame</servlet-name>
+    <servlet-class>com.example.view.AddGame</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateGame</servlet-name>
+    <servlet-class>com.example.view.UpdateGame</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteGame</servlet-name>
+    <servlet-class>com.example.view.DeleteGame</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ListGames</servlet-name>
+    <url-pattern>/listGames</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddGame</servlet-name>
+    <url-pattern>/addGame</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateGame</servlet-name>
+    <url-pattern>/updateGame</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteGame</servlet-name>
+    <url-pattern>/deleteGame</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
