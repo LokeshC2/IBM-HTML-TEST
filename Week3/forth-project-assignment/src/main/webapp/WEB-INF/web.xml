@@ -4,4 +4,41 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>AddCourse</servlet-name>
+    <servlet-class>com.example.view.AddCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CourseList</servlet-name>
+    <servlet-class>com.example.view.CourseList</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StudentRegistration</servlet-name>
+    <servlet-class>com.example.view.StudentCourseRegistration</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.example.view.Login</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddCourse</servlet-name>
+    <url-pattern>/admin/course.add</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CourseList</servlet-name>
+    <url-pattern>/admin/course.list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentRegistration</servlet-name>
+    <url-pattern>student</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/admin/login</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
 </web-app>

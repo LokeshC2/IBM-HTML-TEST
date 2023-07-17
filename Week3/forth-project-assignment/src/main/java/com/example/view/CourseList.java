@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.controller.CourseController;
+import com.example.controller.AppController;
 import com.example.controller.LoginUtility;
 import com.example.model.Course;
 
-public class ListCourses extends HttpServlet {
+public class CourseList extends HttpServlet {
 
-  CourseController courseController = new CourseController();
+  AppController courseController = new AppController();
 
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

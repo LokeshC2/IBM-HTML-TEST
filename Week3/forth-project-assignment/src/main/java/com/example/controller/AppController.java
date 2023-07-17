@@ -6,8 +6,9 @@ import org.hibernate.Session;
 
 import com.example.factory.HibernateFactory;
 import com.example.model.Course;
+import com.example.model.Student;
 
-public class CourseController {
+public class AppController {
 
   public Course addCourse(String courseName, Double coursePrice) {
     Session session = HibernateFactory.getInstance().getSession();
@@ -27,5 +28,23 @@ public class CourseController {
     session.getTransaction().commit();
     session.close();
     return courses;
+  }
+
+  public String registerStudent(String courseId, String studentName) {
+    Session session = HibernateFactory.getInstance().getSession();
+    session.beginTransaction();
+    Course course = session.get(Course.class, courseId);
+    if (course == null) {
+      session.getTransaction().commit();
+      session.close();
+      return null;
+    }
+    Student student = new Student();
+    student.setName(studentName);
+    course.addStudent(student);
+    session.save(course);
+    session.getTransaction().commit();
+    session.close();
+    return student.getId().toString();
   }
 }
