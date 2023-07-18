@@ -1,6 +1,6 @@
-<%@page
-  import="java.util.List,java.util.ArrayList, com.exmaple.model.League, com.exmaple.factory.HibernateFactory, org.hibernate.Session, import="
-  org.hibernate.Transaction" %>
+<%@ page
+  import="java.util.List, java.util.ArrayList, com.example.model.League, com.example.factory.HibernateFactory, org.hibernate.Session, org.hibernate.Transaction"
+  %>
   <!DOCTYPE html>
 
   <html>
@@ -12,7 +12,10 @@
 
   <body>
 
-    <% List<String> list=(List<String>)request.getAttribute("ERROR")
+    <% List<String> list=(List<String>)request.getAttribute("ERROR");
+        String season = null;
+        Integer year = null;
+        String title = null;
         if(list==null || list.isEmpty())
         {
 
@@ -28,7 +31,7 @@
           {
           try
           {
-          Integer.parseInt(yearString);
+          year = Integer.parseInt(yearString);
           }
           catch(NumberFormatException e)
           {
@@ -36,7 +39,7 @@
           }
           }
 
-          String season=request.getParameter("season");
+          season=request.getParameter("season");
           if(season==null || season.trim().isEmpty())
           {
           list.add("Season is required");
@@ -59,7 +62,7 @@
           }
           }
 
-          String title=request.getParameter("title");
+          title=request.getParameter("title");
           if(title==null || title.trim().isEmpty())
           {
           list.add("Title is required");
@@ -73,32 +76,32 @@
           league.setSeason(request.getParameter("season"));
           league.setTitle(request.getParameter("title"));
 
-          Sesssion session = HibernateFactory.getSession();
-          Transaction tx = session.beginTransaction();
-          session.save(league);
+          Session s = HibernateFactory.getSession();
+          Transaction tx = s.beginTransaction();
+          s.save(league);
           tx.commit();
-          session.close();
+          s.close();
           //redirect to list_leagues.do
-          response.sendRedirect("list_leagues.do");
+          response.sendRedirect("listLeague.jsp");
           }
           else
           {
           //set attributes
           request.setAttribute("ERROR",list);
-          //forward to add_league.jsp
-          request.getRequestDispatcher("add_league.jsp").forward(request,response);
+          request.getRequestDispatcher("addLeague.jsp").forward(request,response);
           }
           }
           %>
 
           <h1>Add League</h1>
-          <% List<String> list=(List<String>)request.getAttribute("ERROR");
+          <% List<String> l2=(List<String>)request.getAttribute("ERROR");
 
-              if(list!=null)
+              if(l2!=null && !l2.isEmpty())
+              {
               {
               for(String str:list)
               out.println("<font color='red'>"+str+"</font><br />");
-              }
+              }}
               %>
               <p>
                 This form allows you to create a new soccer league.

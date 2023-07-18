@@ -1,4 +1,6 @@
-<%@page import="java.util.List, java.util.ArrayList, com.exmaple.model.League, com.exmaple.factory.HibernateFactory" %>
+<%@page
+  import="java.util.List, java.util.ArrayList, com.example.model.League, com.example.factory.HibernateFactory, javax.persistence.TypedQuery, org.hibernate.Session"
+  %>
   <!DOCTYPE html>
 
   <html>
@@ -17,7 +19,7 @@
         <th>Season</th>
         <th>Title</th>
       </tr>
-      <% TypedQuery<League> query=session.createQuery("from League");
+      <% Session s=HibernateFactory.getSession(); TypedQuery<League> query=s.createQuery("from League");
         List<League> leagues=query.getResultList();
           for(League league:leagues)
           {
