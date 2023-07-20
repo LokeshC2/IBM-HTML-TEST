@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Student</title>
+</head>
+<body>
+<h1>Welcome to home</h1>
+<p><a href=students/showForm>Add new Student</a>
+<p><a href=students>List All Students</a>
+</body>
+</html>

@@ -1,18 +1,23 @@
 package com.example.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+//@Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class League {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private Integer year;
   private String season;
   private String title;
+  private Integer year;
 }

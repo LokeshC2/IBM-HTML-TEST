@@ -3,19 +3,16 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-    <servlet-name>add</servlet-name>
-    <jsp-file>/addLeague.jsp</jsp-file>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
-      <param-name>seasons</param-name>
-      <param-value>Summer, Winter, Spring, Fall</param-value>
-    </init-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>/WEB-INF/spring-config.xml</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
   </servlet>
-
   <servlet-mapping>
-    <servlet-name>add</servlet-name>
-    <url-pattern>/addLeague.jsp</url-pattern>
+  <servlet-name>Dispatcher</servlet-name>
+  <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
 </web-app>

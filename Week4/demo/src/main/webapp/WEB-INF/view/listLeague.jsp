@@ -1,6 +1,6 @@
 
 <%@page
-	import="java.util.List, java.util.ArrayList, com.example.model.League, com.example.factory.HibernateFactory, javax.persistence.TypedQuery, org.hibernate.Session"%>
+	import="java.util.List, java.util.ArrayList, com.example.model.League"%>
 <!DOCTYPE html>
 
 <html>
@@ -20,9 +20,10 @@
 			<th>Title</th>
 		</tr>
 		<%
-		Session s = HibernateFactory.getSession();
-		TypedQuery<League> query = s.createQuery("from League", League.class);
-		List<League> leagues = query.getResultList();
+// 		Session s = HibernateFactory.getSession();
+// 		TypedQuery<League> query = s.createQuery("from League", League.class);
+// 		List<League> leagues = query.getResultList();
+		List<League> leagues = (List<League>) request.getAttribute("leagues");
 		for (League league : leagues) {
 		%>
 		<tr>
@@ -34,8 +35,8 @@
 		}
 		%>
 	</table>
-	<a href="addLeague.jsp">Add League</a>
-	<a href="index.jsp">Home</a>
+	<a href="addLeague">Add League</a>
+	<a href="./">Home</a>
 </body>
 
 </html>
