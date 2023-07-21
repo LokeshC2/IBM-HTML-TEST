@@ -53,10 +53,12 @@ public class StudentController {
 	
 	@PostMapping("/addStudent")
 	public String addStudent(Model model, @ModelAttribute Student student) {
+		List<String> errors = new ArrayList<String>();
+		if (student.getFirstname().isBlank()) errors.add("No first name mentioned!");
 		
-		student.getFirstname()
+		if (student.getLastname().isBlank()) errors.add("No last name mentioned!");
 		
-		try {
+		if (errors.isEmpty()) try {
 		Connection c = dataSource.getConnection();
 		PreparedStatement pst;
 			pst = c.prepareStatement("Insert into student (firstname,lastname) values (?,?)");
@@ -64,11 +66,9 @@ public class StudentController {
 			pst.setString(2, student.getLastname());
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			List<String> errors = new ArrayList<String>();
 			errors.add(e.getMessage());
-			model.addAttribute("errors", errors);
-			return "showForm";
 		}
-		return "success";
+		model.addAttribute("errors", errors);
+		return errors.isEmpty() ? "success" : "showForm";
 	}
 }

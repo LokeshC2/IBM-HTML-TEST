@@ -1,26 +1,21 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Add Student</title>
 </head>
 <body>
-<ul>
-<c:forEach items="${errors}" var="error">
-<li>${error}</li>
-</c:forEach>
+<ul th:each="error: ${errors}">
+	<li th:text="${error}" ></li>
 </ul>
 <h1>Add Student Form</h1>
-<form:form action="addStudent" modelAttribute="student" method="post">
-<label for="firstname">Firstname: </label>
-<form:input path="firstname" type="text" name="firstname"/>
+<form action="#" th:action="@{/addStudent}" th:object="${student}" method="post">
+<label for="firstname" >Firstname: </label>
+<input type=text th:field=*{firstname} />
 <br>
 <label for=lastname>Lastname: </label>
-<form:input path="lastname" name="lastname" type="text" /> 
+<input th:field="*{lastname}" type="text" /> 
 <br>
-<form:button type="submit">Submit</form:button>
-</form:form>
+<button type="submit">Submit</button>
+</form>
 </body>
 </html>

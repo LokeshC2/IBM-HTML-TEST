@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "employee.salary",
+    "type": "java.lang.String",
+    "description": "A description for 'employee.salary'"
+  },
+  {
+    "name": "department.name",
+    "type": "java.lang.String",
+    "description": "A description for 'department.name'"
+  },
+  {
+    "name": "employee.name",
+    "type": "java.lang.String",
+    "description": "A description for 'employee.name'"
+  }
+]}
