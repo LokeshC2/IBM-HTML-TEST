@@ -1,9 +1,11 @@
 package com.example.demo.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -17,22 +19,33 @@ public class CustomerDaoImpl implements CustomerDao {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Customer> getAllCustomers() {
-		return entityManager.createQuery("FROM Customer C", Customer.class).getResultList();
+	@Transactional
+	public List<Customer> getAllCustomers() throws SQLException {
+		TypedQuery<Customer> query = entityManager.createQuery("FROM Customer C", Customer.class);
+		return query.getResultList();
 	}
 
 	@Override
-	public void save(Customer c) {
+	@Transactional
+	public void save(Customer c) throws SQLException{
 		entityManager.persist(c);
 	}
 
 	@Override
-	public Customer findById(Integer id) {
+	@Transactional
+	public Customer findById(Integer id) throws SQLException{
 		return entityManager.find(Customer.class, id);
 	}
 
 	@Override
-	public void delete(Customer c) {
+	@Transactional
+	public void update(Customer c) throws SQLException{
+		entityManager.merge(c);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Customer c) throws SQLException{
 		entityManager.remove(c);
 	}
 

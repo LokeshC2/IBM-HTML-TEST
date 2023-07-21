@@ -7,12 +7,9 @@ import com.example.demo.model.Customer;
 
 public interface CustomerDao {
 
-	public List<Customer> getAllCustomers();
-	
-	public void save(Customer c);
-	
-	public Customer findById(Integer id);
-	
-	public void delete(Customer c);
-
+	List<Customer> getAllCustomers() throws SQLException;
+	void save(Customer c) throws SQLException;
+	Customer findById(Integer id) throws SQLException;
+	void delete(Customer c) throws SQLException;
+	void update(Customer c) throws SQLException;
 }

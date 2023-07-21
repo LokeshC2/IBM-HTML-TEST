@@ -4,4 +4,8 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/springBoot
     username: lox
-    password: mysql0 
+    password: mysql0
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp

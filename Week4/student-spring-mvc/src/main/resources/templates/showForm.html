@@ -8,7 +8,7 @@
 	<li th:text="${error}" ></li>
 </ul>
 <h1>Add Student Form</h1>
-<form action="#" th:action="@{/addStudent}" th:object="${student}" method="post">
+<form action="#" th:action="@{addStudent}" th:object="${student}" method="post">
 <label for="firstname" >Firstname: </label>
 <input type=text th:field=*{firstname} />
 <br>

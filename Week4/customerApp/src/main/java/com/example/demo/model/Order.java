@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,15 +10,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name="cms_customers")
-public class Customer {
-	@Id
-	private int id;
-	@Column(name="fname")
-	private String firstname;
-	@Column(name="lname")
-	private String lastname;
-	private String email;
+@AllArgsConstructor
+@Table(name="cms_orders")
+public class Order {
+  @Id
+  private Integer id;
 }

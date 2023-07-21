@@ -12,7 +12,7 @@ public class MyDataSourceConfig {
 
 	@Bean
 	@ConfigurationProperties("app.datasource")
-	public DataSource dataSource() {
+  DataSource dataSource() {
 		return DataSourceBuilder.create().build();
 	}
 }
