@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -16,6 +17,7 @@ import com.example.demo.model.Customer;
 @EnableTransactionManagement
 public class CustomerDaoImpl implements CustomerDao {
 
+	@Autowired
 	private EntityManager entityManager;
 
 	@Override

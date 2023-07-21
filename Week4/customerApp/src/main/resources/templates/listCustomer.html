@@ -33,8 +33,8 @@
           <tbody>
             <tr th:each="customer : ${customers}">
               <td th:text="${customer.id}"></td>
-              <td th:text="${customer.firstName}"></td>
-              <td th:text="${customer.lastName}"></td>
+              <td th:text="${customer.firstname}"></td>
+              <td th:text="${customer.lastname}"></td>
               <td th:text="${customer.email}"></td>
               <td>
                 <a th:href="@{/customers/update?id=${customer.id}}" class="btn btn-primary">Update</a>
