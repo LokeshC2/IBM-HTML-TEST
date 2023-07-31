@@ -3,6 +3,7 @@ package org.ibm.conversionservice.service;
 import java.util.Date;
 import java.util.List;
 
+import org.ibm.conversionservice.client.RateClient;
 import org.ibm.conversionservice.dto.ConversionModelDto;
 import org.ibm.conversionservice.model.ConversionRequest;
 import org.ibm.conversionservice.repository.ConversionRepository;
@@ -10,27 +11,22 @@ import org.ibm.conversionservice.ui.ConversionRequestModel;
 import org.ibm.conversionservice.ui.ConversionResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ConversionService {
 
   @Autowired
-  RestTemplate restTemplate;
+  RateClient rateClient;
 
   @Autowired
   ConversionRepository conversionRepository;
-
-  private static final String rateServiceUrl = "http://localhost:9999/rate-service/";
 
   public ConversionResponseModel getConversion(ConversionRequestModel conversion) {
     String[] fromto = conversion.getConvert().split(" -> ");
     String from = fromto[0];
     String to = fromto[1];
 
-    ConversionModelDto rateServiceResponse = restTemplate.getForObject(
-        rateServiceUrl + from + "/" + to + "/",
-        ConversionModelDto.class);
+    ConversionModelDto rateServiceResponse = rateClient.getRate(from, to);
 
     if (rateServiceResponse == null) {
       throw new RuntimeException("Rate not found");
@@ -46,10 +42,7 @@ public class ConversionService {
   }
 
   public List<String> getSupportedCurrencies() {
-    @SuppressWarnings("unchecked")
-    List<String> currencies = restTemplate.getForObject(
-        rateServiceUrl + "currencies/",
-        List.class);
+    List<String> currencies = rateClient.getCurrencies();
 
     if (currencies == null) {
       throw new RuntimeException("Currencies not found");
