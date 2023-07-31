@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,11 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @RestController
 @RequestMapping("/users")
-@NoArgsConstructor
 @AllArgsConstructor
 public class UserController {
 
@@ -35,8 +34,11 @@ public class UserController {
 	public ResponseEntity<List<UserResponseModel>> getAllUsers() {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		List<UserEntity> users = userService.listAll();
-		List<UserResponseModel> responses = users.stream().map(u -> modelMapper.map(u, UserResponseModel.class))
-				.toList();
+		List<UserResponseModel> responses = new ArrayList<UserResponseModel>();
+		for (UserEntity user : users) {
+			UserResponseModel response = modelMapper.map(user, UserResponseModel.class);
+			responses.add(response);
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(responses);
 	}
 
@@ -47,13 +49,14 @@ public class UserController {
 		UserResponseModel response = modelMapper.map(user, UserResponseModel.class);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<UserResponseModel> create(@RequestBody UserRequestModel request){
+	public ResponseEntity<UserResponseModel> create(@RequestBody UserRequestModel request) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserDto userDto = modelMapper.map(request, UserDto.class);
-		userDto.setUserId(UUID.
-		UserResponseModel response = modelMapper.map(user, userResponseModel.class);
+		userDto.setUserId(UUID.randomUUID().toString());
+		UserEntity createdUser = userService.createUserById(userDto);
+		UserResponseModel response = modelMapper.map(createdUser, UserResponseModel.class);
 		return ResponseEntity.ok(response);
 	}
 }

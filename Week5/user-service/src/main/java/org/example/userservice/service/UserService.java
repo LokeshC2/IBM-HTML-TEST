@@ -10,7 +10,7 @@ public interface UserService {
 	List<UserEntity> listAll();
 
 	UserEntity findByUserId(String userId);
-	
-	UserEntity createUserId(UserDto userDto);
+
+  UserEntity createUserById(UserDto userDto);
 
 }

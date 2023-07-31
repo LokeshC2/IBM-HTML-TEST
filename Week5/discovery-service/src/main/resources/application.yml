@@ -14,3 +14,5 @@ eureka:
       
   instance:
     prefer-ip-address: true
+  server:
+    wait-time-in-ms-when-sync-empty: 0

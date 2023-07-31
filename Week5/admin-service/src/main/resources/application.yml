@@ -3,9 +3,3 @@ server:
 spring:
   application:
     name: admin-service
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url: 
-      default-zone: http://localhost:8761/eureka
