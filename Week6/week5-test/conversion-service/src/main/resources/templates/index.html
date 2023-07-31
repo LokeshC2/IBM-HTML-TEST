@@ -1,0 +1,19 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Currency Converter</title>
+</head>
+
+<body>
+  <h1>Currency Converter</h1>
+  <form action="#" th:action="@{./convert}" th:object="${conversion}" method="post">
+    <p>Amount: <input type="text" th:field="*{quantity}" /></p>
+    <p>Convert: <select th:field="*{convert}">
+        <option th:each="currency : ${currencies}" th:value="${currency}" th:text="${currency}"></option>
+      </select></p>
+    <p><input type="submit" value="Convert" /></p>
+  </form>
+
+</body>
