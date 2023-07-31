@@ -1,7 +1,7 @@
-package org.example.departmentService;
+package org.example.departmentservice;
 
-import org.example.departmentService.model.Department;
-import org.example.departmentService.repository.DepartmentRepository;
+import org.example.departmentservice.model.Department;
+import org.example.departmentservice.repository.DepartmentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +21,6 @@ public class DepartmentServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
 		departmentRepository.save(new Department("Sales", "Hyderabad"));
 		departmentRepository.save(new Department("IT", "Banglore"));
 		departmentRepository.save(new Department("Operations", "chennai"));

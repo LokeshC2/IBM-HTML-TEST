@@ -1,4 +1,4 @@
-package org.example.departmentService.model;
+package org.example.departmentservice.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

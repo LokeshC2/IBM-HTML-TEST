@@ -1,4 +1,4 @@
-package org.example.departmentService.controller;
+package org.example.departmentservice.controller;
 
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;

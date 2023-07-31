@@ -1,6 +1,6 @@
-package org.example.departmentService.repository;
+package org.example.departmentservice.repository;
 
-import org.example.departmentService.model.Department;
+import org.example.departmentservice.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

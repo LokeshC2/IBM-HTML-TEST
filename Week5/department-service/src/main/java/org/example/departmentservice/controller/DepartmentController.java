@@ -1,7 +1,7 @@
-package org.example.departmentService.controller;
+package org.example.departmentservice.controller;
 
-import org.example.departmentService.model.Department;
-import org.example.departmentService.sewrvice.DepartmentService;
+import org.example.departmentservice.model.Department;
+import org.example.departmentservice.service.DepartmentService;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

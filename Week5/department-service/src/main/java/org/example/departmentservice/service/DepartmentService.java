@@ -1,6 +1,6 @@
-package org.example.departmentService.sewrvice;
+package org.example.departmentservice.service;
 
-import org.example.departmentService.model.Department;
+import org.example.departmentservice.model.Department;
 
 public interface DepartmentService {
 	
