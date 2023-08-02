@@ -62,6 +62,9 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(userResponseModels);
 	}
 
+	// userId:
+	// password:
+
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UserRequestModel userRequestModel)
 			throws UserNotFoundException, InvalidCredentialsExcetion {

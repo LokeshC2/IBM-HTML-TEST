@@ -7,7 +7,6 @@ import org.ibm.tutorialservice.model.Tutorial;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,15 +32,15 @@ public class MyController {
       return ResponseEntity.status(400).body("userId and password are required");
     }
 
-    UserResponse response;
     try {
-      response = restTemplate.postForObject("http://localhost:8081/login", userRequest, UserResponse.class);
-      Tutorial tutorial = modelMapper.map(userRequest, Tutorial.class);
-      tutorial = repository.save(tutorial);
-      return ResponseEntity.ok(tutorial);
+      restTemplate.postForObject("http://localhost:8081/users/login", userRequest, UserResponse.class);
     } catch (RestClientException e) {
       return ResponseEntity.badRequest().body("Bad Credentials");
     }
-
+    Tutorial tutorial = new Tutorial();
+    tutorial.setDescription(userRequest.getDescription());
+    tutorial.setActive(userRequest.isActive());
+    tutorial = repository.save(tutorial);
+    return ResponseEntity.ok(tutorial);
   }
 }

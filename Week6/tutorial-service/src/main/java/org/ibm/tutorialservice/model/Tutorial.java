@@ -22,5 +22,4 @@ public class Tutorial {
 	private String description;
 	@JsonProperty
 	private boolean isActive;
-
 }

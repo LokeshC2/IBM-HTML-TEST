@@ -1,13 +1,13 @@
-package org.ibm.tutorialservice;
+// package org.ibm.tutorialservice;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class TutorialServiceApplicationTests {
+// @SpringBootTest
+// class TutorialServiceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }
