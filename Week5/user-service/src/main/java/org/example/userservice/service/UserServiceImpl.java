@@ -3,7 +3,7 @@ package org.example.userservice.service;
 import java.util.List;
 
 import org.example.userservice.dto.UserDto;
-import org.example.userservice.entity.UserEntity;
+import org.example.userservice.model.UserEntity;
 import org.example.userservice.repo.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
   private ModelMapper modelMapper;
 
   @Override
-  public List<UserEntity> listAll() {
+  public List<UserEntity> listUsers() {
     return userRepository.findAll();
   }
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserEntity createUserById(UserDto userDto) {
+  public UserEntity createUser(UserDto userDto) {
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     UserEntity userEntity = modelMapper.map(userDto, UserEntity.class);
     StringBuffer sb = new StringBuffer();

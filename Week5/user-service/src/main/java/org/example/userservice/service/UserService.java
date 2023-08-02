@@ -3,14 +3,14 @@ package org.example.userservice.service;
 import java.util.List;
 
 import org.example.userservice.dto.UserDto;
-import org.example.userservice.entity.UserEntity;
+import org.example.userservice.model.UserEntity;
 
 public interface UserService {
 
-	List<UserEntity> listAll();
-
 	UserEntity findByUserId(String userId);
 
-  UserEntity createUserById(UserDto userDto);
+  List<UserEntity> listUsers();
+
+  UserEntity createUser(UserDto userDto);
 
 }

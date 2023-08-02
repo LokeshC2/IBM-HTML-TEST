@@ -1,0 +1,22 @@
+server.port: 0
+spring:
+    application:
+        name: stream-service
+
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/stream-service
+    
+    security:
+        user:
+            name: user
+            password: password
+
+    zipkin:
+        base-url: http://localhost:9411
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

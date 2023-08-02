@@ -1,6 +1,6 @@
 package org.example.userservice.repo;
 
-import org.example.userservice.entity.UserEntity;
+import org.example.userservice.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

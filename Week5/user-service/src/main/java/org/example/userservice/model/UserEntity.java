@@ -1,4 +1,4 @@
-package org.example.userservice.entity;
+package org.example.userservice.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
