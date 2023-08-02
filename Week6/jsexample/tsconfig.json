@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "es2016",
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "strict": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmitOnError": true,
+    "types": ["bun-types"],
+    "outDir": "dist"
+  },
+  "include": ["./**/*"]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "first",
+  "main": "index.js",
+  "module": "first",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
