@@ -1,0 +1,12 @@
+<div>
+<div class="card m-2" style="width: 200px" *ngFor="let p of products">
+  <div class="card-body">
+    <span class="card-title">{{p.name}}</span>
+    <ul class="card-text list-group">
+      <li class="list-group-item list-group-item-light">Id: #{{p.id}}
+      <li class="list-group-item">{{p.price|currency:'INR'}}
+      <li *ngIf="p.isAvailable" class="list-group-item text-success">Available</li>
+      <li *ngIf="!p.isAvailable" class="list-group-item text-danger">Not Available</li>
+    </ul>
+  </div>
+<div>

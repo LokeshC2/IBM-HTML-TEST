@@ -1,0 +1,12 @@
+<table>
+ <tr>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>Salary</th>
+ </tr>
+ <tr *ngFor="let p of sales_people">
+  <td>{{p.firstname}}</td>
+  <td>{{p.lastname}}</td>
+  <td>{{p.income|currency:'INR'}}</td>
+ </tr>
+</table>

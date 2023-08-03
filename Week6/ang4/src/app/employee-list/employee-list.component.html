@@ -1,0 +1,12 @@
+<div>
+<div class="card m-2" style="width: 200px" *ngFor="let e of employees">
+  <div class="card-header text-muted">#{{e.id}}</div>
+  <div class="card-body">
+    <ul class="card-text list-group">
+     <li class="list-group-item list-group-item-imfo">{{e.firstname}} {{e.lastname}}
+     <li class="list-group-item list-gropu-item-info">Email: {{e.email}}
+     <li class="list-group-item list-group-item-info">{{e.department}}
+     <li class="list-group-item list-group-item-info">{{e.location}} 
+    </ul>
+  </div>
+<div>
