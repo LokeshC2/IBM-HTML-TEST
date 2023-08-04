@@ -190,6 +190,8 @@ dist
 .pnp.\*
 practice/
 
+.angular/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

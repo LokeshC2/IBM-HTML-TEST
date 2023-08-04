@@ -25,9 +25,9 @@ export class AppComponent {
    ]
 
    employees: Employee[] = [
-    new Employee("a","Van", "Hohenheim", "s23@xerxes.fm", this.departments[2]),
-    new Employee("b","Roy", "Mustang", "flame@amestris.fm", this.departments[1]),
-    new Employee("c","Ling", "Yao", "prince@xing.fm", this.departments[0])
+     new Employee(141,"Van", "Hohenheim", "s23@xerxes.fm", this.departments[2]),
+     new Employee(23,"Roy", "Mustang", "flame@amestris.fm", this.departments[1]),
+     new Employee(12,"Ling", "Yao", "prince@xing.fm", this.departments[0])
    ]
 }
 

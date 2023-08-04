@@ -1,7 +1,35 @@
-<div>
-<div class="card m-2" style="width: 200px" *ngFor="let d of departments">
-  <div class="card-header">Department of {{d.name}}</div>
-  <div class="card-body">
-    <span>{{d.location}}</span>
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="department.showModal()"
+>
+  Add Department +
+</button>
+<div class="row m-4">
+  <div class="card m-2 col-3" *ngFor="let d of departments">
+    <div class="card-header">Department of {{ d.name }}</div>
+    <div class="card-body">
+      <span>{{ d.locationName }}</span>
+    </div>
   </div>
-<div>
+</div>
+<dialog #department>
+  <form #dform="ngForm" (ngSubmit)="addDepartment(dform.value)">
+    Department Name: <input ngModel name="departmentName" /> Location:
+    <select name="location" ngModel required>
+      <option selected hidden value="null">Select:</option>
+      <option *ngFor="let loc of locations" [ngValue]="loc">
+        {{ loc.name }}
+      </option>
+    </select>
+    <hr />
+    <button
+      type="button"
+      class="btn btn-outline-secodary"
+      (click)="department.close()"
+    >
+      Close
+    </button>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+  </form>
+</dialog>

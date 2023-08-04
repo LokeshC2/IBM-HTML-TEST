@@ -1,12 +1,51 @@
-<div>
-<div class="card m-2" style="width: 200px" *ngFor="let e of employees">
-  <div class="card-header text-muted">#{{e.id}}</div>
-  <div class="card-body">
-    <ul class="card-text list-group">
-     <li class="list-group-item list-group-item-imfo">{{e.firstname}} {{e.lastname}}
-     <li class="list-group-item list-gropu-item-info">Email: {{e.email}}
-     <li class="list-group-item list-group-item-info">{{e.department}}
-     <li class="list-group-item list-group-item-info">{{e.location}} 
-    </ul>
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="employeeform.showModal()"
+>
+  Add Employee +
+</button>
+<div class="row m-4">
+  <div class="card m-2 col-2" *ngFor="let e of employees">
+    <div class="card-header text-muted">#{{ e.id }}</div>
+    <div class="card-body">
+      <ul class="card-text list-group">
+        <li class="list-group-item list-group-item-imfo">
+          {{ e.firstname }} {{ e.lastname }}
+        </li>
+        <li class="list-group-item list-gropu-item-info">
+          Email: {{ e.email }}
+        </li>
+        <li class="list-group-item list-group-item-info">
+          {{ e.departmentName }}
+        </li>
+        <li class="list-group-item list-group-item-info">
+          {{ e.locationName }}
+        </li>
+      </ul>
+    </div>
   </div>
-<div>
+</div>
+
+<dialog #employeeform>
+  <form #eform="ngForm" (ngSubmit)="addEmployee()">
+    FirstName: <input name="firstname" ngModel required /> LastName:
+    <input name="lastname" ngModel required /> Email:
+    <input name="Email" ngModel required /> Department:
+    <select name="Department" ngModel required>
+      <option selected hidden value="null">Select:</option>
+      <option *ngFor="let dept of departments" [ngValue]="dept">
+        {{ dept.name }}
+      </option>
+    </select>
+    <hr />
+    <button
+      type="button"
+      class="btn btn-outline-secodary"
+      (click)="employeeform.close()"
+    >
+      Close
+    </button>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+  </form>
+</dialog>

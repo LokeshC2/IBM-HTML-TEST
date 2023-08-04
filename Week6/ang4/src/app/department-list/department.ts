@@ -2,11 +2,12 @@ import { Location } from "../location-list/location";
 
 export class Department {
   constructor(
-    public name: string,
-    private _location: Location
+  public name: string = "",
+  public location: Location = new Location()
   ) {}
-  
-  public get location(): string {
-    return this._location.name+', ' + this._location.city;
+
+  public get locationName(): string {
+    return this.location.name + ', ' + this.location.city; 
   }
+
 }

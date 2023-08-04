@@ -1,7 +1,31 @@
-<div>
-<div class="card m-2" style="width: 200px" *ngFor="let l of locations">
-  <div class="card-header">{{l.name}}</div>
-  <div class="card-body">
-    <span>{{l.city}}</span>
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="locDialog.showModal()"
+>
+  Add Location +
+</button>
+<div class="row m-4">
+  <div class="card m-2 col-2" style="width: 200px" *ngFor="let l of locations">
+    <div class="card-header">{{ l.name }}</div>
+    <div class="card-body">
+      <span>{{ l.city }}</span>
+    </div>
   </div>
-<div>
+</div>
+
+<dialog #locDialog>
+  <form #lform (ngSubmit)="onSubmit()">
+    Location Name: <input name="locationName" ngModel /> City:
+    <input name="city" ngModel />
+  </form>
+  <hr />
+  <button
+    type="button"
+    class="btn btn-outline-secodary"
+    (click)="locDialog.close()"
+  >
+    Close
+  </button>
+  <button type="submit" class="btn btn-outline-primary">Submit</button>
+</dialog>
