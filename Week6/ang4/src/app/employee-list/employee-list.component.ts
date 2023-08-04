@@ -15,9 +15,8 @@ export class EmployeeListComponent {
    email: string = ""
    department: Department | null = null;
    
-   addEmployee() {
+   addEmployee(result: any) {
     let id = Math.max(...this.employees.map(e=>e.id))+1
-    if (this.department)
-    this.employees.push(new Employee(id, this.firstname, this.lastname, this.email, this.department))
+    this.employees.push(new Employee(id, result.firstname, result.lastname, result.email, result.department))
    }
 }

@@ -28,7 +28,7 @@
 </div>
 
 <dialog #employeeform>
-  <form #eform="ngForm" (ngSubmit)="addEmployee()">
+  <form #eform="ngForm" (ngSubmit)="addEmployee(eform.value)">
     FirstName: <input name="firstname" ngModel required /> LastName:
     <input name="lastname" ngModel required /> Email:
     <input name="Email" ngModel required /> Department:

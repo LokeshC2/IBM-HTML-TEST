@@ -16,16 +16,16 @@
 
 <dialog #locDialog>
   <form #lform (ngSubmit)="onSubmit()">
-    Location Name: <input name="locationName" ngModel /> City:
-    <input name="city" ngModel />
+    Location Name: <input name="locationName" [(ngModel)]="locationName" /> City:
+    <input name="city" [(ngModel)]="city" />
+    <hr />
+    <button
+      type="button"
+      class="btn btn-outline-secodary"
+      (click)="locDialog.close()"
+    >
+      Close
+    </button>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
   </form>
-  <hr />
-  <button
-    type="button"
-    class="btn btn-outline-secodary"
-    (click)="locDialog.close()"
-  >
-    Close
-  </button>
-  <button type="submit" class="btn btn-outline-primary">Submit</button>
 </dialog>
