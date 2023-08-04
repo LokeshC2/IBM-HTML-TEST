@@ -191,6 +191,8 @@ dist
 practice/
 
 .angular/
+.mvn/
+mvnw*
 
 ### NetBeans ###
 /nbproject/private/
