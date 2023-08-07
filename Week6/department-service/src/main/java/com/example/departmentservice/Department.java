@@ -1,4 +1,4 @@
-package com.example.employeeservice;
+package com.example.departmentservice;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +10,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor
-public class Location {
+@Data @NoArgsConstructor @AllArgsConstructor
+public class Department {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private String name;
-  private String city;
+  private String departmentName;
+  private String location;
 }

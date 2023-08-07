@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +21,5 @@ public class Employee {
   public String firstName;
   public String lastName;
   public String email;
-  @ManyToOne
-  public Department department;
+  public String department;
 }

@@ -1,4 +1,4 @@
-package com.example.employeeservice;
+package com.example.departmentservice;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
