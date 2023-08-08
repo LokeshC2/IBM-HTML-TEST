@@ -1,5 +1,5 @@
 import { Department } from '../department-list/department';
-import { Location } from '../location-list/location';
+// import { Location } from '../location-list/location';
 export class Employee {
   constructor(
    public id: number = 0,
@@ -13,7 +13,9 @@ export class Employee {
     return "Department of" + this.department.name;
   }
 
-  public get locationName(): string {
-    return this.department.locationName;
-  }
+  
+
+  // public get locationName(): string {
+  //   return this.department.locationName;
+  // }
 }

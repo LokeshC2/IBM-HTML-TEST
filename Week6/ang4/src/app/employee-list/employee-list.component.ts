@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Employee } from './employee';
 import { Department } from '../department-list/department';
 @Component({
@@ -7,6 +7,7 @@ import { Department } from '../department-list/department';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent {
+
    @Input() employees: Employee[] = [];
    @Input() departments: Department[] = [];
 
@@ -16,7 +17,6 @@ export class EmployeeListComponent {
    department: Department | null = null;
    
    addEmployee(result: any) {
-    let id = Math.max(...this.employees.map(e=>e.id))+1
-    this.employees.push(new Employee(id, result.firstname, result.lastname, result.email, result.department))
+
    }
 }
